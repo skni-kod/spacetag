@@ -88,12 +88,12 @@ pnpm start
 
 ### Current SpaceTag Team
 
-- Adrian Kosior ([@](https://github.com))
-- Cyprian Rejman ([@](https://github.com))
-- Dawid Pindara ([@](https://github.com))
+- Adrian Kosior ([@Nefraix](https://github.com/Nefraix))
+- Cyprian Rejman ([@CyprianRejman](https://github.com/CyprianRejman))
+- Dawid Pindara ([@Noname04](https://github.com/Noname04))
 - Mateusz Aliyev ([@mateuszaliyev](https://github.com/mateuszaliyev)) - Project
   Leader
-- Michał Partyka ([@](https://github.com))
+- Michał Partyka ([@Heryin](https://github.com/Heryin))
 
 ## License
 
