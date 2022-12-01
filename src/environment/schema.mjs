@@ -6,7 +6,13 @@ import { z } from "zod";
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
+  ANALYZE_BUNDLE: z
+    .unknown()
+    .transform((value) => (value === "true" ? true : false)),
   NODE_ENV: z.enum(["development", "production", "test"]),
+  SKIP_ENVIRONMENT_VALIDATION: z
+    .unknown()
+    .transform((value) => (value === "true" ? true : false)),
 });
 
 /**
