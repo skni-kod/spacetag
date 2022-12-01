@@ -1,24 +1,56 @@
 import { useState } from "react";
 import { MdClose, MdFormatListBulleted } from "react-icons/md";
 
+import dynamic from "next/dynamic";
 import Head from "next/head";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useProgress } from "@react-three/drei";
 import { clsx } from "clsx";
 
 import { Button } from "@/components/button";
-import { DateDrawer } from "@/components/date-drawer";
 import { ManageHistoryIcon } from "@/components/icons/manage-history";
-import { Meter } from "@/components/meter";
 import { Navbar } from "@/components/navbar";
-import { SatellitesDrawer } from "@/components/satellites-drawer";
-import { Space } from "@/components/space";
+
+const DateDrawer = dynamic(
+  () => import("@/components/date-drawer").then(({ DateDrawer }) => DateDrawer),
+  {
+    ssr: false,
+  }
+);
+
+const Progress = dynamic(
+  () => import("@/components/progress").then(({ Progress }) => Progress),
+  {
+    ssr: false,
+  }
+);
+
+const SatellitesDrawer = dynamic(
+  () =>
+    import("@/components/satellites-drawer").then(
+      ({ SatellitesDrawer }) => SatellitesDrawer
+    ),
+  {
+    ssr: false,
+  }
+);
+
+const Scene = dynamic(
+  () => import("@/components/scene").then(({ Scene }) => Scene),
+  {
+    ssr: true,
+  }
+);
+
+const Space = dynamic(
+  () => import("@/components/space").then(({ Space }) => Space),
+  {
+    ssr: false,
+  }
+);
 
 const Home = () => {
   const [mainRef] = useAutoAnimate<HTMLElement>();
-
-  const { active, progress } = useProgress();
 
   const [dateDrawerOpen, setDateDrawerOpen] = useState(false);
   const [satellitesDrawerOpen, setSatellitesDrawerOpen] = useState(false);
@@ -26,6 +58,7 @@ const Home = () => {
   return (
     <>
       <Head>
+        <meta content="Track orbital elements in 3D." name="description" />
         <title>SpaceTag</title>
       </Head>
       <Navbar>
@@ -76,12 +109,16 @@ const Home = () => {
         )}
       </Navbar>
       <main className="relative h-screen overflow-y-hidden" ref={mainRef}>
-        <Space />
-        {(active || progress === 0) && (
-          <div className="absolute inset-0 z-loader flex items-center justify-center bg-black">
-            <Meter label="LOADING" unit="%" value={progress} />
-          </div>
-        )}
+        <Scene
+          camera={{
+            far: 10000,
+            near: 0.0001,
+            position: [0, 0, 10],
+          }}
+        >
+          <Space />
+        </Scene>
+        <Progress />
       </main>
       <DateDrawer open={dateDrawerOpen} />
       <SatellitesDrawer open={satellitesDrawerOpen} />

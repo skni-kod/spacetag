@@ -1,11 +1,18 @@
 // @ts-check
 
+import bundleAnalyzer from "@next/bundle-analyzer";
+
 /**
  * Run `build` or `dev` with `SKIP_ENVIRONMENT_VALIDATION` to skip environment
  * validation. This is especially useful for Docker builds.
  */
-!process.env.SKIP_ENVIRONMENT_VALIDATION &&
+process.env.SKIP_ENVIRONMENT_VALIDATION !== "true" &&
   (await import("./src/environment/server.mjs"));
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE_BUNDLE === "true",
+  openAnalyzer: false,
+});
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -71,6 +78,12 @@ const nextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  /**
+   * TODO: remove `swcMinify` option when the issue is resolved.
+   *
+   * @see {@link https://github.com/pmndrs/drei/issues/1102 `<Text/>` fails to load font when Next.js app is deployed to Vercel}
+   */
+  swcMinify: false,
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
