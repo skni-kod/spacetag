@@ -23,9 +23,9 @@ Clone the repository.
 
 ```bash
 git clone https://github.com/skni-kod/spacetag.git
+```
 
-# or
-
+```bash
 git clone git@github.com:skni-kod/spacetag.git
 ```
 
