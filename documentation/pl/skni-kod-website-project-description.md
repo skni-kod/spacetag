@@ -2,6 +2,15 @@
 
 Aplikacja internetowa do śledzenia elementów orbitalnych w 3D.
 
+Strona internetowa wyświetla aktualne pozycje wybranych elementów orbitalnych,
+które wyznaczane są przy użyciu danych w formacie
+[TLE (Two-Line Element)](https://pl.wikipedia.org/wiki/TLE), uzyskiwanych z
+systemu [CelesTrak](https://celestrak.org/). Aplikacja pozwala na dodanie
+dowolnej ilości satelit, wraz z możliwością przypisania do każdego z nich
+wybranego koloru znacznika oraz trajektorii. Możliwe jest wyświetlanie
+przeszłych oraz przyszłych pozycji elementów poprzez wprowadzenie odpowiedniej
+daty i czasu.
+
 ## Geneza projektu
 
 W dniach 1-2 października 2022 roku odbyła się coroczna edycja globalnego
