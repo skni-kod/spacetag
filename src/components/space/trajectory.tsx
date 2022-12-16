@@ -14,7 +14,7 @@ export type TrajectoryProps = {
   color: Color;
   endDate: number;
   tle: string;
-  visible?: boolean;
+  visible: boolean;
 };
 
 export type TrajectoryPointProps = {
@@ -33,7 +33,7 @@ export const Trajectory = ({
   color,
   endDate,
   tle,
-  visible,
+  visible
 }: TrajectoryProps) => {
   const getTime = useTime((state) => state.getTime);
 
