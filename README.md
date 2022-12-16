@@ -32,7 +32,7 @@ git clone git@github.com:skni-kod/spacetag.git
 Go to the project directory.
 
 ```bash
-cd iss
+cd spacetag
 ```
 
 Install dependencies.
@@ -58,10 +58,22 @@ Run the development server.
 pnpm dev
 ```
 
-Lint code with ESLint.
+Lint code with [ESLint](https://eslint.org/).
 
 ```bash
 pnpm lint
+```
+
+Fix any existing errors.
+
+```bash
+pnpm lint --fix
+```
+
+Format code with [Prettier](https://prettier.io/).
+
+```bash
+pnpm format
 ```
 
 Build application for production.
