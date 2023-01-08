@@ -8,7 +8,6 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { clsx } from "clsx";
 
 import { Button } from "@/components/button";
-import { ManageHistoryIcon } from "@/components/icons/manage-history";
 import { Navbar } from "@/components/navbar";
 
 const DateDrawer = dynamic(
@@ -50,10 +49,7 @@ const Space = dynamic(
 );
 
 const MenuDrawer = dynamic(
-  () =>
-    import("@/components/menu").then(
-      ({ MenuDrawer }) => MenuDrawer
-    ),
+  () => import("@/components/menu").then(({ MenuDrawer }) => MenuDrawer),
   {
     ssr: false,
   }
@@ -85,7 +81,8 @@ const Home = () => {
           <Button
             className="ml-auto"
             icon={<MdFormatListBulleted className="h-5 w-5" />}
-            onClick={() => {setMenuDrawerOpen(true)
+            onClick={() => {
+              setMenuDrawerOpen(true);
               setDateDrawerOpen(false);
               setSatellitesDrawerOpen(false);
             }}
@@ -94,7 +91,7 @@ const Home = () => {
             Menu
           </Button>
         )}
-        
+
         {(dateDrawerOpen || satellitesDrawerOpen || menuDrawerOpen) && (
           <Button
             className={clsx(
@@ -126,8 +123,12 @@ const Home = () => {
       </main>
       <DateDrawer open={dateDrawerOpen} />
       <SatellitesDrawer open={satellitesDrawerOpen} />
-      <MenuDrawer open={menuDrawerOpen}  setSatellitesDrawerOpen = {setSatellitesDrawerOpen}  
-      setMenuDrawerOpen = {setMenuDrawerOpen} setDateDrawerOpen = {setDateDrawerOpen}/>
+      <MenuDrawer
+        open={menuDrawerOpen}
+        setDateDrawerOpen={setDateDrawerOpen}
+        setMenuDrawerOpen={setMenuDrawerOpen}
+        setSatellitesDrawerOpen={setSatellitesDrawerOpen}
+      />
     </>
   );
 };

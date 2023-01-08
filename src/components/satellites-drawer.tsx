@@ -67,7 +67,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
     <Drawer open={open}>
       <h2 className="pb-6 text-center text-2xl">Manage Satellites</h2>
       {satellites.length === 0 && !form ? (
-        <div className="flex flex-1 flex-col items-center justify-center text-center gap-8 py-4 pb-32">
+        <div className="flex flex-1 flex-col items-center gap-8 py-4 pb-32 text-center">
           <MdSensorsOff className="h-32 w-32 fill-white/25 " />
           <span className="text-xl ">
             You haven&apos;t added any satellites yet.
