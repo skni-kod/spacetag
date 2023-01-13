@@ -18,7 +18,8 @@ export const Button = ({
     className={clsx(
       "pointer flex items-center gap-2 rounded-md text-base leading-10 transition-colors",
       variant === "danger" && "bg-red-600 px-4 font-semibold hover:bg-red-700",
-      variant === "primary" && "bg-sky-600 px-4 font-semibold hover:bg-sky-700",
+      variant === "primary" &&
+        "bg-slate-700 px-4 font-semibold hover:bg-sky-700",
       variant === "secondary" && "hover:text-gray-400",
       className
     )}
