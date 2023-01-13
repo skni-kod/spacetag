@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { MdAdd, MdCancel, MdDeleteForever, MdSensorsOff, MdRemoveRedEye, MdOutlineRemoveRedEye, MdPublic, MdPublicOff } from "react-icons/md";
+import { MdAdd, MdCancel, MdDeleteForever, MdOutlineRemoveRedEye, MdPublic, MdPublicOff,MdRemoveRedEye, MdSensorsOff } from "react-icons/md";
 
 import autoAnimate from "@formkit/auto-animate";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,8 +22,6 @@ export type SatellietesDrawerProps = {
 };
 
 const addSatelliteSchema = z.object({
-  visibility: z.boolean().default(true),
-  path: z.boolean().default(true),
   color: z.string(),
   tle: z
     .string()
@@ -55,7 +53,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
     resolver: zodResolver(addSatelliteSchema),
   });
 
-  const { addSatellite, removeSatellite, hideSatellite, showSatellite, hideSatellitePath, showSatellitePath, satellites } = useSatellites();
+  const { addSatellite, removeSatellite, satellites, triggerPath, triggerVisible } = useSatellites();
 
   const [form, setForm] = useState(false);
 
@@ -90,26 +88,14 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
                   className="block h-4 w-4 rounded-full"
                   style={{ backgroundColor: satellite.color }}
                 ></span>
-                {satellite.visibility ? (
                   <button
-                  onClick={() => hideSatellite(satellite.id)}>
-                    <MdRemoveRedEye className="h-5 w-5" />
-                  </button>)
-                  : (
-                    <button
-                    onClick={() => showSatellite(satellite.id)}>
-                      <MdOutlineRemoveRedEye className="h-5 w-5" />
-                    </button>)}
-                {satellite.path ? (
+                  onClick={() => triggerVisible(satellite.id)}>
+                    {satellite.visible ? (<MdRemoveRedEye className="h-5 w-5" />) : (<MdOutlineRemoveRedEye className="h-5 w-5" />)}
+                  </button>
                   <button
-                  onClick={() => hideSatellitePath(satellite.id)}>
-                    <MdPublic className="h-5 w-5" />
-                  </button>)
-                  : (
-                    <button
-                    onClick={() => showSatellitePath(satellite.id)}>
-                      <MdPublicOff className="h-5 w-5" />
-                    </button>)}
+                  onClick={() => triggerPath(satellite.id)}>
+                    {satellite.path ? (<MdPublic className="h-5 w-5" />) : (<MdPublicOff className="h-5 w-5" />)}
+                  </button>
                 <span>{getSatelliteName(satellite.tle)}</span>
                 <button
                   className="ml-auto block transition-colors hover:text-red-500"
@@ -136,10 +122,10 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
 
             void handleSubmit(async ({ color, tle }) => {
               await addSatellite({
-                visibility: true,
-                path: true,
                 color,
+                path: true,
                 tle,
+                visible: true,
               });
 
               setForm(false);

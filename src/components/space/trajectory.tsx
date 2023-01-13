@@ -14,7 +14,7 @@ export type TrajectoryProps = {
   color: Color;
   endDate: number;
   tle: string;
-  visible: boolean;
+  visible?: boolean;
 };
 
 export type TrajectoryPointProps = {

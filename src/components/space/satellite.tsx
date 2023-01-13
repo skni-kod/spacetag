@@ -10,13 +10,13 @@ import { useTime } from "@/hooks/time";
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 
 export type SatelliteProps = {
-  visibility: boolean;
-  path: boolean;
   color: Color;
+  path: boolean;
   tle: string;
+  visible: boolean;
 };
 
-export const Satellite = ({ visibility, path, color, tle }: SatelliteProps) => {
+export const Satellite = ({ color, path, tle, visible }: SatelliteProps) => {
   const [initialized, setInitialized] = useState(false);
 
   const getTime = useTime((state) => state.getTime);
@@ -49,23 +49,16 @@ export const Satellite = ({ visibility, path, color, tle }: SatelliteProps) => {
 
   camera.getWorldDirection(vector);
 
-  if (!visibility) {
-    return null;
-  }
-  else {
-    return (
-      <>
-      <mesh ref={planeteRef}>
-          <sphereGeometry args={[0.1, 8, 8]} />
-          <meshBasicMaterial color={color} />
-        </mesh>
-        <mesh ref={textRef}>
-          <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
-            {getSatelliteName(tle)}
-          </Text>
-        </mesh>
-      </>
-    );
-  }
-  
+  return (
+  <>
+  (<mesh ref={planeteRef} visible={visible}>)
+      <sphereGeometry args={[0.1, 8, 8]} />
+      <meshBasicMaterial color={color} />
+    </mesh>
+    <mesh ref={textRef} visible={visible}>
+      <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
+        {getSatelliteName(tle)}
+      </Text>
+    </mesh>
+  </>);
 };

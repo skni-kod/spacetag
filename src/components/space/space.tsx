@@ -28,10 +28,10 @@ export const Space = () => {
       {satellites.map((satellite) => (
         <Fragment key={satellite.id}>
           <Satellite 
-            visibility={satellite.visibility}
-            path={satellite.path}
             color={satellite.color}
-            tle={satellite.tle} />
+            path={satellite.path}
+            tle={satellite.tle}
+            visible={satellite.visible} />
           <Trajectory
             beginningDate={getTime() - 4000000}
             color={satellite.color}
