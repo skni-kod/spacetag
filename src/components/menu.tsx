@@ -28,7 +28,7 @@ export const MenuDrawer = ({
             setMenuDrawerOpen(false);
           }}
         >
-          Satelites
+          Satellites
         </Button>
         <Button
           className="mx-auto w-3/5"
