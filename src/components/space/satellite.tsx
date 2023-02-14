@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 
-import { Text } from "@react-three/drei";
 import { Color, useFrame, useThree } from "@react-three/fiber";
 import { type Mesh, Vector3 } from "three";
 import { getSatelliteName } from "tle.js";
+
+import { Text } from "@/components/space/text";
 
 import { useTime } from "@/hooks/time";
 
