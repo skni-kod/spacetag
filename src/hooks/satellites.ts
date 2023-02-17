@@ -51,7 +51,7 @@ export const useSatellites = create(
             satellite.id === id
               ? {
                   ...satellite,
-                  path: !satellite.path
+                  path: !satellite.path,
                 }
               : satellite
           ),
@@ -63,7 +63,7 @@ export const useSatellites = create(
             satellite.id === id
               ? {
                   ...satellite,
-                  visible: !satellite.visible
+                  visible: !satellite.visible,
                 }
               : satellite
           ),

@@ -11,12 +11,11 @@ import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 
 export type SatelliteProps = {
   color: Color;
-  path: boolean;
   tle: string;
   visible: boolean;
 };
 
-export const Satellite = ({ color, path, tle, visible }: SatelliteProps) => {
+export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
   const [initialized, setInitialized] = useState(false);
 
   const getTime = useTime((state) => state.getTime);
@@ -50,15 +49,16 @@ export const Satellite = ({ color, path, tle, visible }: SatelliteProps) => {
   camera.getWorldDirection(vector);
 
   return (
-  <>
-  (<mesh ref={planeteRef} visible={visible}>)
-      <sphereGeometry args={[0.1, 8, 8]} />
-      <meshBasicMaterial color={color} />
-    </mesh>
-    <mesh ref={textRef} visible={visible}>
-      <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
-        {getSatelliteName(tle)}
-      </Text>
-    </mesh>
-  </>);
+    <>
+      <mesh ref={planeteRef} visible={visible}>
+        <sphereGeometry args={[0.1, 8, 8]} />
+        <meshBasicMaterial color={color} />
+      </mesh>
+      <mesh ref={textRef} visible={visible}>
+        <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
+          {getSatelliteName(tle)}
+        </Text>
+      </mesh>
+    </>
+  );
 };

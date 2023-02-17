@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { MdAdd, MdCancel, MdDeleteForever, MdOutlineRemoveRedEye, MdPublic, MdPublicOff,MdRemoveRedEye, MdSensorsOff } from "react-icons/md";
+import {
+  MdAdd,
+  MdCancel,
+  MdDeleteForever,
+  MdOutlineRemoveRedEye,
+  MdPublic,
+  MdPublicOff,
+  MdRemoveRedEye,
+  MdSensorsOff,
+} from "react-icons/md";
 
 import autoAnimate from "@formkit/auto-animate";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -53,7 +62,13 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
     resolver: zodResolver(addSatelliteSchema),
   });
 
-  const { addSatellite, removeSatellite, satellites, triggerPath, triggerVisible } = useSatellites();
+  const {
+    addSatellite,
+    removeSatellite,
+    satellites,
+    triggerPath,
+    triggerVisible,
+  } = useSatellites();
 
   const [form, setForm] = useState(false);
 
@@ -88,14 +103,20 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
                   className="block h-4 w-4 rounded-full"
                   style={{ backgroundColor: satellite.color }}
                 ></span>
-                  <button
-                  onClick={() => triggerVisible(satellite.id)}>
-                    {satellite.visible ? (<MdRemoveRedEye className="h-5 w-5" />) : (<MdOutlineRemoveRedEye className="h-5 w-5" />)}
-                  </button>
-                  <button
-                  onClick={() => triggerPath(satellite.id)}>
-                    {satellite.path ? (<MdPublic className="h-5 w-5" />) : (<MdPublicOff className="h-5 w-5" />)}
-                  </button>
+                <button onClick={() => triggerVisible(satellite.id)}>
+                  {satellite.visible ? (
+                    <MdRemoveRedEye className="h-5 w-5" />
+                  ) : (
+                    <MdOutlineRemoveRedEye className="h-5 w-5" />
+                  )}
+                </button>
+                <button onClick={() => triggerPath(satellite.id)}>
+                  {satellite.path ? (
+                    <MdPublic className="h-5 w-5" />
+                  ) : (
+                    <MdPublicOff className="h-5 w-5" />
+                  )}
+                </button>
                 <span>{getSatelliteName(satellite.tle)}</span>
                 <button
                   className="ml-auto block transition-colors hover:text-red-500"
