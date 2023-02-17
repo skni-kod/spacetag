@@ -13,9 +13,10 @@ import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 export type SatelliteProps = {
   color: Color;
   tle: string;
+  visible: boolean;
 };
 
-export const Satellite = ({ color, tle }: SatelliteProps) => {
+export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
   const [initialized, setInitialized] = useState(false);
 
   const getTime = useTime((state) => state.getTime);
@@ -50,11 +51,11 @@ export const Satellite = ({ color, tle }: SatelliteProps) => {
 
   return (
     <>
-      <mesh ref={planeteRef}>
+      <mesh ref={planeteRef} visible={visible}>
         <sphereGeometry args={[0.1, 8, 8]} />
         <meshBasicMaterial color={color} />
       </mesh>
-      <mesh ref={textRef}>
+      <mesh ref={textRef} visible={visible}>
         <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
           {getSatelliteName(tle)}
         </Text>

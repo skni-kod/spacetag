@@ -6,13 +6,17 @@ import { generateId } from "@/utilities/generate-id";
 export type Satellite = {
   color: string;
   id: string;
+  path: boolean;
   tle: string;
+  visible: boolean;
 };
 
 export type SatellitesStore = {
   addSatellite: (satellite: Omit<Satellite, "id">) => Promise<void>;
   removeSatellite: (id: string) => void;
   satellites: Satellite[];
+  triggerPath: (id: string) => void;
+  triggerVisible: (id: string) => void;
 };
 
 export const useSatellites = create(
@@ -40,6 +44,30 @@ export const useSatellites = create(
           ),
         })),
       satellites: [],
+      triggerPath: (id) =>
+        set((state) => ({
+          ...state,
+          satellites: state.satellites.map((satellite) =>
+            satellite.id === id
+              ? {
+                  ...satellite,
+                  path: !satellite.path,
+                }
+              : satellite
+          ),
+        })),
+      triggerVisible: (id) =>
+        set((state) => ({
+          ...state,
+          satellites: state.satellites.map((satellite) =>
+            satellite.id === id
+              ? {
+                  ...satellite,
+                  visible: !satellite.visible,
+                }
+              : satellite
+          ),
+        })),
     }),
     {
       name: "satellites",
