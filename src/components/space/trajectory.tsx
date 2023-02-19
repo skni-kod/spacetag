@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 
 import { Color, useFrame, useThree } from "@react-three/fiber";
-import { Mesh } from "three";
+import type { Mesh } from "three";
 import { getSatelliteName } from "tle.js";
 
 import { Text } from "@/components/space/text";
