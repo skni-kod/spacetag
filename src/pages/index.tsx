@@ -7,6 +7,7 @@ import Head from "next/head";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { clsx } from "clsx";
 
+import { Attribution } from "@/components/attribution";
 import { Button } from "@/components/button";
 import { Navbar } from "@/components/navbar";
 
@@ -129,6 +130,7 @@ const Home = () => {
         setMenuDrawerOpen={setMenuDrawerOpen}
         setSatellitesDrawerOpen={setSatellitesDrawerOpen}
       />
+      <Attribution />
     </>
   );
 };
