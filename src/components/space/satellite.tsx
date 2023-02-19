@@ -6,6 +6,7 @@ import { getSatelliteName } from "tle.js";
 
 import { Text } from "@/components/space/text";
 
+import { useObj } from "@/hooks/obj";
 import { useTime } from "@/hooks/time";
 
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
@@ -18,6 +19,10 @@ export type SatelliteProps = {
 
 export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
   const [initialized, setInitialized] = useState(false);
+
+  const satellite = useObj<"Satellite:Satellite_mat", "Satellite_mesh">(
+    "/assets/models/satellite.obj"
+  );
 
   const getTime = useTime((state) => state.getTime);
 
@@ -51,9 +56,13 @@ export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
 
   return (
     <>
-      <mesh ref={planeteRef} visible={visible}>
-        <sphereGeometry args={[0.1, 8, 8]} />
-        <meshBasicMaterial color={color} />
+      <mesh
+        geometry={satellite.nodes.Satellite_mesh.geometry}
+        ref={planeteRef}
+        scale={[0.01, 0.01, 0.01]}
+        visible={visible}
+      >
+        <meshPhysicalMaterial color={color} />
       </mesh>
       <mesh ref={textRef} visible={visible}>
         <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>

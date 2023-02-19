@@ -100,7 +100,6 @@ pnpm start
 
 ### Current SpaceTag Team
 
-- Adrian Kosior ([@Nefraix](https://github.com/Nefraix))
 - Dawid Pindara ([@Noname04](https://github.com/Noname04))
 - Mateusz Aliyev ([@mateuszaliyev](https://github.com/mateuszaliyev)) - Project
   Leader
