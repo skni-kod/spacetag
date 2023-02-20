@@ -1,3 +1,8 @@
+/**
+ * This is the client-side entrypoint for the tRPC API used to create the `api`
+ * object which contains the Next.js application wrapper, type-safe React Query
+ * hooks and a few inference helpers for input and output types.
+ */
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
@@ -6,33 +11,31 @@ import superjson from "superjson";
 import type { Router } from "@/server/router";
 
 /**
- * Input Inference helper.
+ * Input inference helper.
+ *
  * @example type HelloInput = RouterInput["example"]["hello"]
- * @see {@link https://trpc.io/docs/v10/infer-types Inferring Types}
- **/
+ * @see {@link https://trpc.io/docs/infer-types Inferring Types}
+ */
 export type RouterInput = inferRouterInputs<Router>;
 
 /**
  * Output inference helper.
+ *
  * @example type HelloOutput = RouterOutput["example"]["hello"]
- * @see {@link https://trpc.io/docs/v10/infer-types Inferring Types}
- **/
+ * @see {@link https://trpc.io/docs/infer-types Inferring Types}
+ */
 export type RouterOutput = inferRouterOutputs<Router>;
 
 const getBaseUrl = () => {
   /**
    * Browser should use relative URL.
    */
-  if (typeof window !== "undefined") {
-    return "";
-  }
+  if (typeof window !== "undefined") return "";
 
   /**
    * Vercel should use `VERCEL_URL`.
    */
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
 
   /**
    * Development environment should use `localhost`.
@@ -40,7 +43,10 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
 
-export const trpc = createTRPCNext<Router>({
+/**
+ * A set of type-safe React Query hooks for your tRPC API.
+ */
+export const api = createTRPCNext<Router>({
   config: () => ({
     /**
      * Links used to determine request flow from client to server.
@@ -75,5 +81,10 @@ export const trpc = createTRPCNext<Router>({
      */
     transformer: superjson,
   }),
+  /**
+   * Whether tRPC should await queries when server rendering pages.
+   *
+   * @see {@link https://trpc.io/docs/nextjs#ssr-boolean-default-false Usage with Next.js}
+   */
   ssr: false,
 });
