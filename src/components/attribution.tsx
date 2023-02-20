@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import { type HTMLAttributes, useEffect, useState } from "react";
 
 import { useSatellites } from "@/hooks/satellites";
 
@@ -8,11 +8,14 @@ export type AttributionProps = Omit<
 >;
 
 export const Attribution = (props: AttributionProps) => {
-  const satellties = useSatellites((state) => state.satellites);
+  const [show, setShow] = useState(false);
+  const satellites = useSatellites((state) => state.satellites);
 
-  if (!satellties.length) return null;
+  useEffect(() => {
+    setShow(Boolean(satellites.length));
+  }, [satellites.length]);
 
-  return (
+  return show ? (
     <div
       className="fixed bottom-0 left-0 flex items-center bg-black/50 px-2 py-1 text-xs backdrop-blur-xl"
       {...props}
@@ -47,5 +50,5 @@ export const Attribution = (props: AttributionProps) => {
         ] via Poly Pizza
       </span>
     </div>
-  );
+  ) : null;
 };
