@@ -10,6 +10,9 @@ const srcDirectories = ["assets", ...readdirSync(resolve(__dirname, "./src"))];
 
 /** @type {import("eslint").Linter.Config} */
 const eslintConfig = {
+  env: {
+    es6: true,
+  },
   extends: ["eslint:recommended", "next/core-web-vitals"],
   overrides: [
     {
