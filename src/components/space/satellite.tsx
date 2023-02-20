@@ -65,7 +65,12 @@ export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
         <meshPhysicalMaterial color={color} />
       </mesh>
       <mesh ref={textRef} visible={visible}>
-        <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
+        <Text
+          color={color}
+          fontSize={0.1}
+          outlineColor={0x000000}
+          outlineWidth={0.01}
+        >
           {getSatelliteName(tle)}
         </Text>
       </mesh>
