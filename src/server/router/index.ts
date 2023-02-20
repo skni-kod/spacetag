@@ -1,4 +1,4 @@
-import { router as createRouter } from "@/server/trpc";
+import { router as createRouter } from "@/server";
 
 export type Router = typeof router;
 

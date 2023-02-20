@@ -4,9 +4,9 @@ import type { AppType } from "next/app";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { Fonts } from "@/components/fonts";
+import { api } from "@/api";
 
-import { trpc } from "@/trpc";
+import { Fonts } from "@/components/fonts";
 
 import "@/styles/globals.css";
 
@@ -20,4 +20,4 @@ const Application: AppType = ({ Component, pageProps }) => (
   </>
 );
 
-export default trpc.withTRPC(Application);
+export default api.withTRPC(Application);
