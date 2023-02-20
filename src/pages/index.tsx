@@ -38,7 +38,7 @@ const SatellitesDrawer = dynamic(
 const Scene = dynamic(
   () => import("@/components/scene").then(({ Scene }) => Scene),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 
