@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {import("eslint").Linter.Config} */
 const eslintConfig = {
   extends: ["./.eslintrc.base.js", "next/core-web-vitals", "prettier"],
