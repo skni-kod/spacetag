@@ -1,4 +1,4 @@
-import { forwardRef, TextareaHTMLAttributes } from "react";
+import { forwardRef, type TextareaHTMLAttributes } from "react";
 
 import { clsx } from "clsx";
 
