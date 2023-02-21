@@ -187,7 +187,10 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             <Button icon={<MdAdd />}>Add Satellite</Button>
             <Button
               icon={<MdCancel />}
-              onClick={() => {setForm(false); reset();}}
+              onClick={() => {
+                setForm(false);
+                reset();
+              }}
               type="button"
               variant="danger"
             >
@@ -219,7 +222,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             <Textarea
               className="font-mono text-xs"
               defaultValue={
-                satellites.find((satellite) => satellite.id === edit)!.tle
+                satellites.find((satellite) => satellite.id === edit)?.tle
               }
               id="tle"
               required
@@ -230,7 +233,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             <Label htmlFor="color">Color</Label>
             <Input
               defaultValue={
-                satellites.find((satellite) => satellite.id === edit)!.color
+                satellites.find((satellite) => satellite.id === edit)?.color
               }
               id="color"
               required
@@ -243,7 +246,10 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             <Button icon={<MdEdit />}>Edit Satellite</Button>
             <Button
               icon={<MdCancel />}
-              onClick={() => {setEdit("-1"); reset();}}
+              onClick={() => {
+                setEdit("-1");
+                reset();
+              }}
               type="button"
               variant="danger"
             >
