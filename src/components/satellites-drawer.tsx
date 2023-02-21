@@ -128,7 +128,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
                   <MdEdit className="h-5 w-5" />
                 </button>
                 <button
-                  className="ml-auto mr-0 block transition-colors hover:text-red-500"
+                  className="ml-0 mr-0 block transition-colors hover:text-red-500"
                   onClick={() => removeSatellite(satellite.id)}
                 >
                   <MdDeleteForever className="h-5 w-5" />
