@@ -4,6 +4,7 @@ import {
   MdAdd,
   MdCancel,
   MdDeleteForever,
+  MdEdit,
   MdOutlineRemoveRedEye,
   MdPublic,
   MdPublicOff,
@@ -64,6 +65,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
 
   const {
     addSatellite,
+    editSatellite,
     removeSatellite,
     satellites,
     triggerPath,
@@ -71,6 +73,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
   } = useSatellites();
 
   const [form, setForm] = useState(false);
+  const [edit, setEdit] = useState("-1");
 
   const emptyRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +94,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             New Satellite
           </Button>
         </div>
-      ) : !form ? (
+      ) : !form && edit === "-1" ? (
         <>
           <ul className="divide-y divide-white/10">
             {satellites.map((satellite) => (
@@ -119,7 +122,13 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
                 </button>
                 <span>{getSatelliteName(satellite.tle)}</span>
                 <button
-                  className="ml-auto block transition-colors hover:text-red-500"
+                  className="ml-auto mr-0 block transition-colors hover:text-sky-400"
+                  onClick={() => setEdit(satellite.id)}
+                >
+                  <MdEdit className="h-5 w-5" />
+                </button>
+                <button
+                  className="ml-auto mr-0 block transition-colors hover:text-red-500"
                   onClick={() => removeSatellite(satellite.id)}
                 >
                   <MdDeleteForever className="h-5 w-5" />
@@ -135,7 +144,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             <span>Add New Satellite</span>
           </button>
         </>
-      ) : (
+      ) : edit === "-1" && form ? (
         <form
           className="flex flex-1 flex-col px-4"
           onSubmit={(event) => {
@@ -178,7 +187,7 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             <Button icon={<MdAdd />}>Add Satellite</Button>
             <Button
               icon={<MdCancel />}
-              onClick={() => setForm(false)}
+              onClick={() => {setForm(false); reset();}}
               type="button"
               variant="danger"
             >
@@ -186,7 +195,63 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
             </Button>
           </div>
         </form>
-      )}
+      ) : !form && edit !== "-1" ? (
+        <form
+          className="flex flex-1 flex-col px-4"
+          onSubmit={(event) => {
+            event.preventDefault();
+            void handleSubmit(({ color, tle }) => {
+              editSatellite(edit, {
+                color,
+                id: edit,
+                path: true,
+                tle,
+                visible: true,
+              });
+
+              setEdit("-1");
+              reset();
+            })(event);
+          }}
+        >
+          <div className="flex-1">
+            <Label htmlFor="tle">TLE</Label>
+            <Textarea
+              className="font-mono text-xs"
+              defaultValue={
+                satellites.find((satellite) => satellite.id === edit)!.tle
+              }
+              id="tle"
+              required
+              rows={6}
+              {...register("tle")}
+            />
+            <Error>{errors.tle?.message}</Error>
+            <Label htmlFor="color">Color</Label>
+            <Input
+              defaultValue={
+                satellites.find((satellite) => satellite.id === edit)!.color
+              }
+              id="color"
+              required
+              type="color"
+              {...register("color")}
+            />
+            <Error>{errors.color?.message}</Error>
+          </div>
+          <div className="flex justify-center gap-4">
+            <Button icon={<MdEdit />}>Edit Satellite</Button>
+            <Button
+              icon={<MdCancel />}
+              onClick={() => {setEdit("-1"); reset();}}
+              type="button"
+              variant="danger"
+            >
+              Cancel
+            </Button>
+          </div>
+        </form>
+      ) : null}
     </Drawer>
   );
 };
