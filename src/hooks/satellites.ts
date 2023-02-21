@@ -13,7 +13,7 @@ export type Satellite = {
 
 export type SatellitesStore = {
   addSatellite: (satellite: Omit<Satellite, "id">) => Promise<void>;
-  editSatellite: (id: string, satellite: Satellite) => void;
+  editSatellite: (id: string, sat: Satellite) => void;
   removeSatellite: (id: string) => void;
   satellites: Satellite[];
   triggerPath: (id: string) => void;
