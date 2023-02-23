@@ -93,7 +93,7 @@ const Home = () => {
 
         {(dateDrawerOpen || satellitesDrawerOpen || menuDrawerOpen) && (
           <Button
-            className={ "ml-auto"}
+            className={"ml-auto"}
             icon={<MdClose className="h-5 w-5" />}
             onClick={() => {
               setDateDrawerOpen(false);

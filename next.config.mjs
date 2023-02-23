@@ -31,7 +31,7 @@ const nextConfig = {
           connect-src 'self' ws: https://fonts.gstatic.com/s/titilliumweb/v15/NaPecZTIAOhVxoMyOr9n_E7fRMc.woff;
           default-src 'self';
           frame-ancestors 'none';
-          img-src 'self' data: https://i.imgur.com/jOjPBNg.jpg https://i.imgur.com/0UzB7N1.jpg https://i.imgur.com/Zadamhe.jpg https://i.imgur.com/7nVHtOd.png;
+          img-src 'self' data: https://i.imgur.com/jOjPBNg.jpg https://i.imgur.com/0UzB7N1.jpg https://i.imgur.com/Zadamhe.jpg https://i.imgur.com/7nVHtOd.png https://i.imgur.com/l5kIze3.png;
           media-src 'none';
           script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:;
           style-src 'self' 'unsafe-inline';

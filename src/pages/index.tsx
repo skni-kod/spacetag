@@ -2,19 +2,19 @@ import Head from "next/head";
 import Link from "next/link";
 
 import { Button } from "@/components/button";
-import { Navbar } from "@/components/navbar";
 
 function Homepage() {
   return (
-    <>
+    <div className="fixed  h-screen w-screen overflow-hidden bg-stars ">
       <Head>
         <meta content="Track orbital elements in 3D." name="description" />
         <title>SpaceTag</title>
       </Head>
-      <Navbar className="justify-start bg-slate-700 ">
-        <h1 className="flex select-none items-center py-1 text-2xl font-semibold">
+
+      <div className="grid place-items-center space-y-8 py-24 px-2">
+        <h1 className="flex select-none items-center text-2xl font-semibold">
           <svg
-            className="h-6 fill-current"
+            className="h-16 fill-current"
             viewBox="0 0 138.94 26.458"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -22,18 +22,17 @@ function Homepage() {
           </svg>
         </h1>
         <Button className="">
-          <Link href="/space"> Browse the satellites</Link>
+          <Link href="/space"> Launch SpaceTag</Link>
         </Button>
-        <Button> About Us</Button>
-      </Navbar>
-      <div className="grid place-items-start py-24">
-        <h1 className="text-4xl">Welcome to Spacetag! </h1>
-        <h1 className="text-3xl"> </h1>
-        <Button className="">
-          <Link href="/space"> Browse the satellites</Link>
-        </Button>
+        <Link href="/space">
+          <h1 className=" text-xl text-slate-400 underline underline-offset-4">
+            {" "}
+            Learn More{" "}
+          </h1>
+        </Link>
       </div>
-    </>
+      <div className="absolute left-1/2 top-2/3 h-[1000vh] w-[1000vh] -translate-x-1/2 bg-[radial-gradient(#000000_70%,#ffffff_70.1%,#0ea5e9_70.3%,#0ea5e900_70.7%)]" />
+    </div>
   );
 }
 
