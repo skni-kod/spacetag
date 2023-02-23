@@ -1,8 +1,7 @@
-import { MdAdd } from "react-icons/md";
-
 import { Button } from "@/components/button";
 import { Drawer } from "@/components/drawer";
 import { ManageHistoryIcon } from "@/components/icons/manage-history";
+import { SatelliteIcon } from "@/components/icons/satellite";
 
 export type MenuDrawer = {
   open?: boolean;
@@ -22,17 +21,17 @@ export const MenuDrawer = ({
       <div className="flex flex-col justify-center gap-8 py-4 pb-32 ">
         <Button
           className="mx-auto w-3/5"
-          icon={<MdAdd />}
+          icon={<SatelliteIcon className="h-5 w-5" />}
           onClick={() => {
             setSatellitesDrawerOpen(true);
             setMenuDrawerOpen(false);
           }}
         >
-          Satellites
+          Manage Satellites
         </Button>
         <Button
           className="mx-auto w-3/5"
-          icon={<ManageHistoryIcon className="h-5 w-5 fill-current" />}
+          icon={<ManageHistoryIcon className="h-5 w-5" />}
           onClick={() => {
             setDateDrawerOpen(true);
             setMenuDrawerOpen(false);

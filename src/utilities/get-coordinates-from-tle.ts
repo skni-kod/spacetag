@@ -1,4 +1,4 @@
-import { getLatLngObj } from "tle.js";
+import { getGeographicCoordinates } from "@/tle/utilities";
 
 export type Coordinates = {
   latitude: number;
@@ -12,7 +12,7 @@ export const getCoordinatesFromTle = (
   tle: string,
   timestamp: number
 ): Coordinates => {
-  const { lat: latitude, lng: longitude } = getLatLngObj(tle, timestamp);
+  const { latitude, longitude } = getGeographicCoordinates(tle, timestamp);
 
   const distanceFromEarthCenter = 6378 + 400;
 

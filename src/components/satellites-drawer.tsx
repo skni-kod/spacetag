@@ -13,7 +13,6 @@ import {
 
 import autoAnimate from "@formkit/auto-animate";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { getLatLngObj, getSatelliteName } from "tle.js";
 import { z } from "zod";
 
 import { Button } from "@/components/button";
@@ -24,6 +23,8 @@ import { Textarea } from "@/components/textarea";
 
 import { useSatellites } from "@/hooks/satellites";
 
+import { getSatelliteName, isValidTle } from "@/tle/utilities";
+
 import { Error } from "./error";
 
 export type SatellietesDrawerProps = {
@@ -32,22 +33,9 @@ export type SatellietesDrawerProps = {
 
 const addSatelliteSchema = z.object({
   color: z.string(),
-  tle: z
-    .string()
-    .min(1)
-    .refine(
-      (tle) => {
-        try {
-          getLatLngObj(tle, Date.now());
-        } catch (error) {
-          return false;
-        }
-        return true;
-      },
-      {
-        message: "TLE is not valid.",
-      }
-    ),
+  tle: z.string().min(1).refine(isValidTle, {
+    message: "Invalid TLE.",
+  }),
 });
 
 export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
