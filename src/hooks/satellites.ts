@@ -13,7 +13,7 @@ export type Satellite = {
 
 export type SatellitesStore = {
   addSatellite: (satellite: Omit<Satellite, "id">) => Promise<void>;
-  editSatellite: (id: string, sat: Satellite) => void;
+  editSatellite: (satellite: Pick<Satellite, "color" | "id" | "tle">) => void;
   removeSatellite: (id: string) => void;
   satellites: Satellite[];
   triggerPath: (id: string) => void;
@@ -37,15 +37,15 @@ export const useSatellites = create(
           ],
         }));
       },
-      editSatellite: (id, sat) =>
+      editSatellite: ({ color, id, tle }) =>
         set((state) => ({
           ...state,
           satellites: state.satellites.map((satellite) =>
             satellite.id === id
               ? {
                   ...satellite,
-                  color: sat.color,
-                  tle: sat.tle,
+                  color,
+                  tle,
                 }
               : satellite
           ),
