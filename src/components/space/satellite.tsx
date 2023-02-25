@@ -1,12 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
+import { useGLTF } from "@react-three/drei";
 import { type Color, useFrame, useThree } from "@react-three/fiber";
+import type { Material } from "three";
 import { type Mesh, Vector3 } from "three";
+import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { getSatelliteName } from "tle.js";
 
 import { Text } from "@/components/space/text";
 
-import { useObj } from "@/hooks/obj";
 import { useTime } from "@/hooks/time";
 
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
@@ -18,22 +20,15 @@ export type SatelliteProps = {
 };
 
 export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
-  const [initialized, setInitialized] = useState(false);
-
-  const satellite = useObj<"Satellite:Satellite_mat", "Satellite_mesh">(
-    "/assets/models/satellite.obj"
-  );
+  const satellite = useGLTF("/assets/models/satellite.glb") as GLTF & {
+    materials: Record<"Satellite:Satellite_mat", Material>;
+    nodes: Record<"Satellite_mesh", Mesh>;
+  };
 
   const getTime = useTime((state) => state.getTime);
 
   useFrame(() => {
-    if (!planeteRef.current || !textRef.current) {
-      return;
-    }
-
-    if (!initialized) {
-      setInitialized(true);
-    }
+    if (!planeteRef.current || !textRef.current) return;
 
     const { x, y, z } = getCoordinatesFromTle(tle, getTime());
 
