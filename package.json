@@ -5,9 +5,9 @@
     "dev": "next dev",
     "format": "prettier --config ./prettier.config.js --write \"**/*.{css,js,md,mjs,scss,ts,tsx}\"",
     "lint": "next lint",
-    "postinstall": "tsx ./scripts/tle.ts",
+    "postinstall": "tsx ./scripts/satellites.ts",
+    "satellites:generate": "tsx ./scripts/satellites.ts",
     "start": "next start",
-    "tle:generate": "tsx ./scripts/tle.ts",
     "typecheck": "tsc",
     "vscode:generate": "tsx ./scripts/vscode.ts"
   },

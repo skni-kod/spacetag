@@ -1,6 +1,11 @@
 import { getLatLngObj, isValidTLE } from "tle.js";
 
-import type { TleGroup, TleGroups, TleSatellite, TleSatellites } from "./types";
+import type {
+  Satellite,
+  SatelliteGroup,
+  SatelliteGroups,
+  Satellites,
+} from "./types";
 
 export { getSatelliteName } from "tle.js";
 
@@ -41,12 +46,14 @@ export const getGeographicCoordinates = (
   return { latitude, longitude };
 };
 
-export const isElement = (
-  satellites: TleSatellites,
+export const isGroup = (
+  groups: SatelliteGroups,
   name: string
-): name is TleSatellite => name in satellites;
+): name is SatelliteGroup => name in groups;
 
-export const isGroup = (groups: TleGroups, name: string): name is TleGroup =>
-  name in groups;
+export const isSatellite = (
+  satellites: Satellites,
+  name: string
+): name is Satellite => name in satellites;
 
 export const isValidTle = isValidTLE;

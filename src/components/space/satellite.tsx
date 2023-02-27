@@ -10,7 +10,7 @@ import { Text } from "@/components/space/text";
 
 import { useTime } from "@/hooks/time";
 
-import { getSatelliteName } from "@/tle/utilities";
+import { getSatelliteName } from "@/satellite/utilities";
 
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 

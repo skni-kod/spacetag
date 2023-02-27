@@ -1,16 +1,16 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { procedure, router } from "@/server";
-
 import {
   getSatelliteData,
   getSatelliteFromUrl,
-  isElement,
   isGroup,
-} from "@/tle/utilities";
+  isSatellite,
+} from "@/satellite/utilities";
 
-export const tle = router({
+import { procedure, router } from "@/server";
+
+export const satellite = router({
   find: router({
     all: procedure.query(async () =>
       Object.keys((await getSatelliteData()).satellites)
@@ -20,7 +20,7 @@ export const tle = router({
       .query(async ({ input: { name } }) => {
         const { groups, satellites } = await getSatelliteData();
 
-        if (!isElement(satellites, name)) {
+        if (!isSatellite(satellites, name)) {
           throw new TRPCError({
             code: "NOT_FOUND",
             message: `\`${name}\` element could not be found`,

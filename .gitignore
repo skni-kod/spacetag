@@ -43,5 +43,5 @@ next-env.d.ts
 # visual studio code
 /.vscode
 
-# tle data
-/src/tle/data.json
+# satellite data
+/src/satellite/data.json

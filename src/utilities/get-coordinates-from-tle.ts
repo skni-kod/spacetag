@@ -1,4 +1,4 @@
-import { getGeographicCoordinates } from "@/tle/utilities";
+import { getGeographicCoordinates } from "@/satellite/utilities";
 
 export type Coordinates = {
   latitude: number;

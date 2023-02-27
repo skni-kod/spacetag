@@ -1,14 +1,17 @@
 import { writeFile } from "fs/promises";
 
-import { TLE_BASE_URL, TLE_DATA_PATH } from "@/tle/constants";
-import type { TleData } from "@/tle/types";
-import { getSatelliteNamesFromUrl } from "@/tle/utilities";
+import {
+  SATELLITES_BASE_URL,
+  SATELLITES_DATA_PATH,
+} from "@/satellite/constants";
+import type { SatelliteData } from "@/satellite/types";
+import { getSatelliteNamesFromUrl } from "@/satellite/utilities";
 
 const generateTleData = async () => {
-  const response = await fetch(TLE_BASE_URL);
+  const response = await fetch(SATELLITES_BASE_URL);
 
   if (!response.ok) {
-    console.error(`Service \`${TLE_BASE_URL}\` is unavailable.`);
+    console.error(`Service \`${SATELLITES_BASE_URL}\` is unavailable.`);
   }
 
   const text = await response.text();
@@ -18,7 +21,7 @@ const generateTleData = async () => {
 
   for (const [_, url, group] of anchors) {
     if (!group || !url) continue;
-    groups.set(group, `${TLE_BASE_URL}${url}`);
+    groups.set(group, `${SATELLITES_BASE_URL}${url}`);
   }
 
   const results = await Promise.allSettled(
@@ -50,7 +53,7 @@ const generateTleData = async () => {
     }
   }
 
-  const data: TleData = {
+  const data: SatelliteData = {
     groups: Object.fromEntries(
       [...groups].sort(([group1], [group2]) => (group1 < group2 ? -1 : 1))
     ),
@@ -61,7 +64,7 @@ const generateTleData = async () => {
     ),
   };
 
-  await writeFile(TLE_DATA_PATH, JSON.stringify(data), "utf-8");
+  await writeFile(SATELLITES_DATA_PATH, JSON.stringify(data), "utf-8");
 };
 
 void generateTleData();

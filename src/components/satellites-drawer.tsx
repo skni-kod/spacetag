@@ -24,7 +24,7 @@ import { Textarea } from "@/components/textarea";
 
 import { useSatellites } from "@/hooks/satellites";
 
-import { getSatelliteName, isValidTle } from "@/tle/utilities";
+import { getSatelliteName, isValidTle } from "@/satellite/utilities";
 
 import { Error } from "./error";
 
