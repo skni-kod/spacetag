@@ -7,7 +7,13 @@ export const Progress = () => {
 
   return active || progress === 0 ? (
     <div className="absolute inset-0 z-loader flex items-center justify-center bg-black">
-      <Meter label="LOADING" unit="%" value={progress} />
+      <Meter
+        aria-valuetext={`${Math.round(progress)}%`}
+        label="LOADING"
+        unit="%"
+        value={progress}
+        valueLabel={`${Math.round(progress)}`}
+      />
     </div>
   ) : null;
 };
