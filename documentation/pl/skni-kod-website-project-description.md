@@ -77,15 +77,6 @@ użyciem biblioteki React po stronie serwera - zarówno statycznie jak i na
 Posiada wiele funkcji usprawniających działanie aplikacji, w tym optymalizację
 obrazów, czy czcionek.
 
-### [React Aria](https://react-spectrum.adobe.com/react-aria/)
-
-React Aria to biblioteka hooków React, która ułatwia tworzenie dostępnych
-serwisów internetowych. Tworzone z użyciem tej biblioteki komponenty React
-spełniają wymagania specyfikacji [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/),
-działają jednakowo na wszystkich platformach i są poprawnie interpretowane przez
-czytniki ekranu. Komponenty są pod względem wyglądu w pełni modyfikowalne, co
-pozwala na dostosowanie ich do projektu graficznego.
-
 ### [Tailwind CSS](https://tailwindcss.com/)
 
 Tailwind CSS to biblioteka ułatwiająca stylowanie nowoczesnych aplikacji.

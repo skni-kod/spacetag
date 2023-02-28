@@ -2,14 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { MdRestartAlt } from "react-icons/md";
 
 import autoAnimate from "@formkit/auto-animate";
-import {
-  type DateValue,
-  getLocalTimeZone,
-  parseAbsoluteToLocal,
-} from "@internationalized/date";
 
 import { Button } from "@/components/button";
-import { DateField } from "@/components/date/field";
 import { Drawer } from "@/components/drawer";
 
 import { useTime } from "@/hooks/time";
@@ -18,8 +12,8 @@ export type DateDrawerProps = {
   open?: boolean;
 };
 
-const getDateValueFromTimestamp = (timestamp: number) =>
-  parseAbsoluteToLocal(new Date(timestamp).toISOString()) as DateValue;
+const toDateTimeLocalValue = (timestamp: number) =>
+  new Date(timestamp).toISOString().slice(0, 16);
 
 export const DateDrawer = ({ open }: DateDrawerProps) => {
   const { getTime, setOffset, setOffsetFromDate } = useTime(
@@ -30,6 +24,8 @@ export const DateDrawer = ({ open }: DateDrawerProps) => {
     })
   );
 
+  const [date, setDate] = useState(toDateTimeLocalValue(getTime()));
+
   const emptyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,12 +35,9 @@ export const DateDrawer = ({ open }: DateDrawerProps) => {
   }, []);
 
   useEffect(() => {
-    if (open) {
-      setDate(getDateValueFromTimestamp(getTime()));
-    }
+    if (!open) return;
+    setDate(toDateTimeLocalValue(getTime()));
   }, [getTime, open]);
-
-  const [date, setDate] = useState(getDateValueFromTimestamp(getTime()));
 
   return (
     <Drawer open={open}>
@@ -55,20 +48,28 @@ export const DateDrawer = ({ open }: DateDrawerProps) => {
           event.preventDefault();
         }}
       >
-        <DateField
-          aria-label="Date"
-          granularity="minute"
-          onChange={(value) => {
-            setDate(value);
-            setOffsetFromDate(value.toDate(getLocalTimeZone()));
-          }}
-          value={date}
-        />
+        <div className="flex rounded transition focus-within:ring focus-within:ring-sky-500">
+          <input
+            className="flex rounded-l bg-white/10 px-4 py-2 outline-none"
+            onChange={(event) => {
+              const value =
+                event.target.value || toDateTimeLocalValue(Date.now());
+              setDate(value);
+              setOffsetFromDate(new Date(`${value}Z`));
+            }}
+            type="datetime-local"
+            value={date}
+          />
+          <span className="flex items-center rounded-r bg-white/10 pr-4 text-gray-500">
+            UTC
+          </span>
+        </div>
         <Button
           icon={<MdRestartAlt className="h-5 w-5" />}
           onClick={() => {
+            console.log(toDateTimeLocalValue(Date.now()));
+            setDate(toDateTimeLocalValue(Date.now()));
             setOffset(0);
-            setDate(parseAbsoluteToLocal(new Date(Date.now()).toISOString()));
           }}
           type="button"
         >
