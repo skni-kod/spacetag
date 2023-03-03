@@ -1,3 +1,4 @@
+import type { TLE } from "tle.js";
 import { getLatLngObj, isValidTLE } from "tle.js";
 
 import type {
@@ -56,4 +57,10 @@ export const isSatellite = (
   name: string
 ): name is Satellite => name in satellites;
 
-export const isValidTle = isValidTLE;
+export const isValidTle = (tle: TLE) => {
+  try {
+    return isValidTLE(tle);
+  } catch (_error) {
+    return false;
+  }
+};

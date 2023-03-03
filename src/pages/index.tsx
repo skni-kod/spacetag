@@ -18,6 +18,13 @@ const DateDrawer = dynamic(
   }
 );
 
+const MenuDrawer = dynamic(
+  () => import("@/components/menu-drawer").then(({ MenuDrawer }) => MenuDrawer),
+  {
+    ssr: false,
+  }
+);
+
 const Progress = dynamic(
   () => import("@/components/progress").then(({ Progress }) => Progress),
   {
@@ -44,13 +51,6 @@ const Scene = dynamic(
 
 const Space = dynamic(
   () => import("@/components/space").then(({ Space }) => Space),
-  {
-    ssr: false,
-  }
-);
-
-const MenuDrawer = dynamic(
-  () => import("@/components/menu").then(({ MenuDrawer }) => MenuDrawer),
   {
     ssr: false,
   }

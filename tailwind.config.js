@@ -11,9 +11,11 @@ const tailwindCssConfig = {
       },
     },
     zIndex: {
-      drawer: "3",
-      loader: "1",
-      navbar: "2",
+      0: "0",
+      1: "1",
+      drawer: "4",
+      loader: "2",
+      navbar: "3",
     },
   },
 };

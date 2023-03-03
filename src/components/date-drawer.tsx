@@ -5,6 +5,7 @@ import autoAnimate from "@formkit/auto-animate";
 
 import { Button } from "@/components/button";
 import { Drawer } from "@/components/drawer";
+import { Input } from "@/components/input";
 
 import { useTime } from "@/hooks/time";
 
@@ -48,22 +49,17 @@ export const DateDrawer = ({ open }: DateDrawerProps) => {
           event.preventDefault();
         }}
       >
-        <div className="flex rounded transition focus-within:ring focus-within:ring-sky-500">
-          <input
-            className="flex rounded-l bg-white/10 px-4 py-2 outline-none"
-            onChange={(event) => {
-              const value =
-                event.target.value || toDateTimeLocalValue(Date.now());
-              setDate(value);
-              setOffsetFromDate(new Date(`${value}Z`));
-            }}
-            type="datetime-local"
-            value={date}
-          />
-          <span className="flex items-center rounded-r bg-white/10 pr-4 text-gray-500">
-            UTC
-          </span>
-        </div>
+        <Input
+          onChange={(event) => {
+            const value =
+              event.target.value || toDateTimeLocalValue(Date.now());
+            setDate(value);
+            setOffsetFromDate(new Date(`${value}Z`));
+          }}
+          suffix="UTC"
+          type="datetime-local"
+          value={date}
+        />
         <Button
           icon={<MdRestartAlt className="h-5 w-5" />}
           onClick={() => {
