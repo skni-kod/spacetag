@@ -5,11 +5,12 @@ import { type Color, useFrame, useThree } from "@react-three/fiber";
 import type { Material } from "three";
 import { type Mesh, Vector3 } from "three";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { getSatelliteName } from "tle.js";
 
 import { Text } from "@/components/space/text";
 
 import { useTime } from "@/hooks/time";
+
+import { getSatelliteName } from "@/satellite/utilities";
 
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 

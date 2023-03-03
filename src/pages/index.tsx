@@ -18,6 +18,13 @@ const DateDrawer = dynamic(
   }
 );
 
+const MenuDrawer = dynamic(
+  () => import("@/components/menu-drawer").then(({ MenuDrawer }) => MenuDrawer),
+  {
+    ssr: false,
+  }
+);
+
 const Progress = dynamic(
   () => import("@/components/progress").then(({ Progress }) => Progress),
   {
@@ -49,23 +56,17 @@ const Space = dynamic(
   }
 );
 
-const MenuDrawer = dynamic(
-  () => import("@/components/menu").then(({ MenuDrawer }) => MenuDrawer),
-  {
-    ssr: false,
-  }
-);
-
 const Home = () => {
   const [mainRef] = useAutoAnimate<HTMLElement>();
 
   const [dateDrawerOpen, setDateDrawerOpen] = useState(false);
-  const [satellitesDrawerOpen, setSatellitesDrawerOpen] = useState(false);
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
+  const [satellitesDrawerOpen, setSatellitesDrawerOpen] = useState(false);
+
   return (
     <>
       <Head>
-        <meta content="Track orbital elements in 3D." name="description" />
+        <meta content="Track satellites in 3D." name="description" />
         <title>SpaceTag</title>
       </Head>
       <Navbar>
@@ -83,8 +84,8 @@ const Home = () => {
             className="ml-auto"
             icon={<MdFormatListBulleted className="h-5 w-5" />}
             onClick={() => {
-              setMenuDrawerOpen(true);
               setDateDrawerOpen(false);
+              setMenuDrawerOpen(true);
               setSatellitesDrawerOpen(false);
             }}
             variant="secondary"
@@ -101,8 +102,8 @@ const Home = () => {
             icon={<MdClose className="h-5 w-5" />}
             onClick={() => {
               setDateDrawerOpen(false);
-              setSatellitesDrawerOpen(false);
               setMenuDrawerOpen(false);
+              setSatellitesDrawerOpen(false);
             }}
             variant="secondary"
           >

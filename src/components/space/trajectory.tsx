@@ -2,11 +2,12 @@ import { useMemo, useRef, useState } from "react";
 
 import { type Color, useFrame, useThree } from "@react-three/fiber";
 import type { Mesh } from "three";
-import { getSatelliteName } from "tle.js";
 
 import { Text } from "@/components/space/text";
 
 import { useTime } from "@/hooks/time";
+
+import { getSatelliteName } from "@/satellite/utilities";
 
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 

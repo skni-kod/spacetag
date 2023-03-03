@@ -45,7 +45,12 @@ const eslintConfig = {
             },
           },
         ],
-        "@typescript-eslint/consistent-type-imports": "warn",
+        "@typescript-eslint/consistent-type-imports": [
+          "warn",
+          {
+            disallowTypeAnnotations: false,
+          },
+        ],
         "@typescript-eslint/no-misused-promises": [
           "error",
           {
