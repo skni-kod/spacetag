@@ -24,7 +24,7 @@ export const Drawer = ({ children, open }: DrawerProps) => {
       ref={ref}
     >
       {open && (
-        <div className="flex h-full flex-col bg-black/50 py-6 backdrop-blur-xl">
+        <div className="flex h-full flex-col overflow-y-auto bg-black/50 py-6 backdrop-blur-xl">
           {children}
         </div>
       )}

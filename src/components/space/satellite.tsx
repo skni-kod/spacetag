@@ -1,33 +1,35 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
-import { Color, useFrame, useThree } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { type Color, useFrame, useThree } from "@react-three/fiber";
+import type { Material } from "three";
 import { type Mesh, Vector3 } from "three";
-import { getSatelliteName } from "tle.js";
+import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 import { Text } from "@/components/space/text";
 
 import { useTime } from "@/hooks/time";
+
+import { getSatelliteName } from "@/satellite/utilities";
 
 import { getCoordinatesFromTle } from "@/utilities/get-coordinates-from-tle";
 
 export type SatelliteProps = {
   color: Color;
   tle: string;
+  visible: boolean;
 };
 
-export const Satellite = ({ color, tle }: SatelliteProps) => {
-  const [initialized, setInitialized] = useState(false);
+export const Satellite = ({ color, tle, visible }: SatelliteProps) => {
+  const satellite = useGLTF("/assets/models/satellite.glb") as GLTF & {
+    materials: Record<"Satellite:Satellite_mat", Material>;
+    nodes: Record<"Satellite_mesh", Mesh>;
+  };
 
   const getTime = useTime((state) => state.getTime);
 
   useFrame(() => {
-    if (!planeteRef.current || !textRef.current) {
-      return;
-    }
-
-    if (!initialized) {
-      setInitialized(true);
-    }
+    if (!planeteRef.current || !textRef.current) return;
 
     const { x, y, z } = getCoordinatesFromTle(tle, getTime());
 
@@ -50,12 +52,21 @@ export const Satellite = ({ color, tle }: SatelliteProps) => {
 
   return (
     <>
-      <mesh ref={planeteRef}>
-        <sphereGeometry args={[0.1, 8, 8]} />
-        <meshBasicMaterial color={color} />
+      <mesh
+        geometry={satellite.nodes.Satellite_mesh.geometry}
+        ref={planeteRef}
+        scale={[0.01, 0.01, 0.01]}
+        visible={visible}
+      >
+        <meshPhysicalMaterial color={color} />
       </mesh>
-      <mesh ref={textRef}>
-        <Text color={color} outlineColor={0x000000} outlineWidth={0.01}>
+      <mesh ref={textRef} visible={visible}>
+        <Text
+          color={color}
+          fontSize={0.1}
+          outlineColor={0x000000}
+          outlineWidth={0.01}
+        >
           {getSatelliteName(tle)}
         </Text>
       </mesh>

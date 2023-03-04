@@ -1,5 +1,3 @@
-// @ts-check
-
 import bundleAnalyzer from "@next/bundle-analyzer";
 
 /**
@@ -7,7 +5,7 @@ import bundleAnalyzer from "@next/bundle-analyzer";
  * validation. This is especially useful for Docker builds.
  */
 process.env.SKIP_ENVIRONMENT_VALIDATION !== "true" &&
-  (await import("./src/environment/server.mjs"));
+  (await import("./src/environment.mjs"));
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE_BUNDLE === "true",

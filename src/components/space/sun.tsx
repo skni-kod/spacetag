@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { type Mesh, BackSide } from "three";
+import { BackSide, type Mesh } from "three";
 
 import { IMAGES } from "@/constants/images";
 

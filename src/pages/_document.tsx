@@ -36,7 +36,7 @@ const Document = () => (
       />
       <meta content="#000000" name="theme-color" />
     </Head>
-    <body className="flex flex-1 flex-col bg-black font-sans text-white">
+    <body className="flex flex-grow flex-col bg-black font-sans text-white">
       <Main />
       <NextScript />
     </body>

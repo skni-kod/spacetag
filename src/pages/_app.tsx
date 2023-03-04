@@ -1,23 +1,19 @@
-import { SSRProvider } from "react-aria";
-
 import type { AppType } from "next/app";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { Fonts } from "@/components/fonts";
+import { api } from "@/api";
 
-import { trpc } from "@/trpc";
+import { Fonts } from "@/components/fonts";
 
 import "@/styles/globals.css";
 
 const Application: AppType = ({ Component, pageProps }) => (
   <>
     <Fonts />
-    <SSRProvider>
-      <Component {...pageProps} />
-    </SSRProvider>
+    <Component {...pageProps} />
     <ReactQueryDevtools initialIsOpen={false} />
   </>
 );
 
-export default trpc.withTRPC(Application);
+export default api.withTRPC(Application);
