@@ -6,6 +6,9 @@ const tailwindCssConfig = {
   plugins: [],
   theme: {
     extend: {
+      backgroundImage: {
+        stars: "url('https://i.imgur.com/l5kIze3.png')",
+      },
       fontFamily: {
         sans: ["var(--font-titillium-web)", ...defaultTheme.fontFamily.mono],
       },
