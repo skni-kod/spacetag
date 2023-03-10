@@ -2,7 +2,8 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 const Document = () => (
   <Html
-    className={"flex min-h-screen flex-col scroll-smooth [color-scheme:dark]"}
+    className="flex min-h-screen scroll-p-4 flex-col scroll-smooth [color-scheme:dark]"
+    lang="en"
   >
     <Head>
       <link
