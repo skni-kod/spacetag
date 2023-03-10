@@ -36,6 +36,11 @@ const Document = () => (
         name="msapplication-config"
       />
       <meta content="#000000" name="theme-color" />
+      <meta content="Track satellites in 3D." name="description" />
+      <meta
+        content="max-image-preview:none,noarchive,none,noimageindex,nositelinkssearchboxx,nosnippet,notranslate"
+        name="robots"
+      />
     </Head>
     <body className="flex flex-grow flex-col bg-black font-sans text-white">
       <Main />
