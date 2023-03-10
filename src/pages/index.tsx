@@ -198,15 +198,7 @@ const Homepage = () => (
                 </div>
                 <div className="mx-auto my-16 w-4 border-b border-dashed border-neutral-700" />
                 <div className="mx-auto flex items-center gap-4 rounded-md bg-white/10 py-2 px-4 transition">
-                  <div>
-                    {new Intl.DateTimeFormat("en-US", {
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    }).format(new Date(2023, 6, 21, 11, 47))}
-                  </div>
+                  <div>07/21/2023 11:47 AM</div>
                   <MdCalendarToday className="ml-4 h-4 w-4" />
                   <div className="text-neutral-500">UTC</div>
                 </div>
