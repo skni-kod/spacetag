@@ -1,6 +1,5 @@
+import { Titillium_Web } from "next/font/google";
 import Head from "next/head";
-
-import { Titillium_Web } from "@next/font/google";
 
 const titilliumWeb = Titillium_Web({
   display: "fallback",

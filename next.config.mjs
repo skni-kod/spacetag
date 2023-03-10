@@ -72,9 +72,14 @@ const nextConfig = {
       source: "/(.*)",
     },
   ],
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
+  images: {
+    remotePatterns: [
+      {
+        hostname: "i.imgur.com",
+        pathname: "/l5kIze3.png",
+        protocol: "https",
+      },
+    ],
   },
   poweredByHeader: false,
   reactStrictMode: true,

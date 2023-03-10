@@ -6,7 +6,6 @@ specifiers:
   '@hookform/resolvers': 2.9.11
   '@matali/eslint-config': 1.0.0
   '@next/bundle-analyzer': 13.2.3
-  '@next/font': 13.2.3
   '@react-three/drei': 9.57.0
   '@react-three/fiber': 8.11.7
   '@tanstack/react-query': 4.26.0
@@ -15,7 +14,7 @@ specifiers:
   '@trpc/next': 10.14.0
   '@trpc/react-query': 10.14.0
   '@trpc/server': 10.14.0
-  '@types/eslint': ^8.21.1
+  '@types/eslint': 8.21.1
   '@types/node': 18.14.6
   '@types/prettier': 2.7.2
   '@types/react': 18.0.28
@@ -42,6 +41,7 @@ specifiers:
   react-dom: 18.2.0
   react-hook-form: 7.43.4
   react-icons: 4.8.0
+  react-wrap-balancer: ^0.4.0
   superjson: 1.12.2
   tailwindcss: 3.2.7
   three: 0.150.1
@@ -56,7 +56,6 @@ dependencies:
   '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
   '@hookform/resolvers': 2.9.11_react-hook-form@7.43.4
   '@next/bundle-analyzer': 13.2.3
-  '@next/font': 13.2.3
   '@react-three/drei': 9.57.0_zuberdgr242nbrjad3wa2au75q
   '@react-three/fiber': 8.11.7_73epb4osyabtjyiaeamriercbi
   '@tanstack/react-query': 4.26.0_biqbaboplfbrettd7655fr4n2y
@@ -72,6 +71,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.4_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
+  react-wrap-balancer: 0.4.0_react@18.2.0
   superjson: 1.12.2
   three: 0.150.1
   tle.js: 4.7.3
@@ -475,10 +475,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/font/13.2.3:
-    resolution: {integrity: sha512-7EHzk0f7FVYICLUZTpyPk93IfcTUao++Xt1Sgb+Zk5dVOCYHabqLtlF5ywSoXIqyFlo0qlshEBxsrzHAGTWkDw==}
-    dev: false
 
   /@next/swc-android-arm-eabi/13.2.3:
     resolution: {integrity: sha512-mykdVaAXX/gm+eFO2kPeVjnOCKwanJ9mV2U0lsUGLrEdMUifPUjiXKc6qFAIs08PvmTMOLMNnUxqhGsJlWGKSw==}
@@ -3274,6 +3270,14 @@ packages:
       debounce: 1.2.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-wrap-balancer/0.4.0_react@18.2.0:
+    resolution: {integrity: sha512-MUsROihHd7bFHCo9kCOifKDYBEZPgKTyGvfa8RcwRQKtT2cL7Um9Cc8A7GvuT8t3np7LAGsEkzdEyJdKrr5lVQ==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react/18.2.0:
