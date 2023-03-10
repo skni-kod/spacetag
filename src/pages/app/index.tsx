@@ -66,7 +66,6 @@ const Home = () => {
   return (
     <>
       <Head>
-        <meta content="Track satellites in 3D." name="description" />
         <title>SpaceTag</title>
       </Head>
       <Navbar>

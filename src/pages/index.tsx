@@ -26,7 +26,6 @@ import { IMAGES } from "@/constants/images";
 const Homepage = () => (
   <>
     <Head>
-      <meta content="Track orbital elements in 3D." name="description" />
       <title>SpaceTag</title>
     </Head>
     <div className="absolute inset-0 overflow-hidden" role="presentation">
