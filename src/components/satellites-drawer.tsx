@@ -7,14 +7,13 @@ import {
   MdEdit,
   MdExpandMore,
   MdHourglassTop,
-  MdList,
-  MdOutlineRemoveRedEye,
-  MdPublic,
-  MdPublicOff,
-  MdRemoveRedEye,
+  MdMoreVert,
+  MdMultipleStop,
+  MdPlaylistAdd,
+  MdSatelliteAlt,
   MdSave,
   MdSensorsOff,
-  MdTune,
+  MdTextSnippet,
 } from "react-icons/md";
 
 import autoAnimate from "@formkit/auto-animate";
@@ -73,10 +72,10 @@ const AddSatelliteMenu = ({
     )}
     className="mx-auto"
   >
-    <MenuItem icon={MdList} onClick={onListClick}>
+    <MenuItem icon={MdPlaylistAdd} onClick={onListClick}>
       Add satellite from a list
     </MenuItem>
-    <MenuItem icon={MdTune} onClick={onCustomClick}>
+    <MenuItem icon={MdTextSnippet} onClick={onCustomClick}>
       Add satellite with a custom TLE
     </MenuItem>
   </Menu>
@@ -177,47 +176,60 @@ export const SatellitesDrawer = ({ open }: SatellietesDrawerProps) => {
         ) : (
           <div className="flex flex-col gap-4">
             <ul className="divide-y divide-white/10">
-              {satellites.map((satellite) => (
-                <li
-                  className="flex select-none items-center gap-4 p-4 transition-colors hover:bg-white/10"
-                  key={satellite.id}
-                >
-                  <span
-                    className="block h-4 w-4 rounded-full"
-                    style={{ backgroundColor: satellite.color }}
-                  ></span>
-                  <button onClick={() => triggerVisible(satellite.id)}>
-                    {satellite.visible ? (
-                      <MdRemoveRedEye className="h-5 w-5" />
-                    ) : (
-                      <MdOutlineRemoveRedEye className="h-5 w-5" />
-                    )}
-                  </button>
-                  <button onClick={() => triggerPath(satellite.id)}>
-                    {satellite.path ? (
-                      <MdPublic className="h-5 w-5" />
-                    ) : (
-                      <MdPublicOff className="h-5 w-5" />
-                    )}
-                  </button>
-                  <span>{getSatelliteName(satellite.tle)}</span>
-                  <button
-                    className="ml-auto mr-0 block transition-colors hover:text-sky-400"
-                    onClick={() => {
-                      setSatelliteId(satellite.id);
-                      setView("form-custom");
-                    }}
+              {satellites.map((satellite) => {
+                const name = getSatelliteName(satellite.tle);
+
+                return (
+                  <li
+                    className="flex select-none items-center gap-4 p-4"
+                    key={satellite.id}
                   >
-                    <MdEdit className="h-5 w-5" />
-                  </button>
-                  <button
-                    className="ml-0 mr-0 block transition-colors hover:text-red-500"
-                    onClick={() => removeSatellite(satellite.id)}
-                  >
-                    <MdDeleteForever className="h-5 w-5" />
-                  </button>
-                </li>
-              ))}
+                    <span
+                      className="block h-4 w-4 rounded-full"
+                      style={{ backgroundColor: satellite.color }}
+                    ></span>
+                    <span>{name}</span>
+                    <Menu
+                      align="right"
+                      button={() => (
+                        <button className="h-full transition hover:text-neutral-400">
+                          <MdMoreVert aria-hidden="true" className="h-5 w-5" />
+                          <span className="sr-only">{name} Settings</span>
+                        </button>
+                      )}
+                      className="ml-auto"
+                    >
+                      <MenuItem
+                        icon={MdSatelliteAlt}
+                        onClick={() => triggerVisible(satellite.id)}
+                      >
+                        {satellite.visible ? "Hide" : "Show"} satellite model
+                      </MenuItem>
+                      <MenuItem
+                        icon={MdMultipleStop}
+                        onClick={() => triggerPath(satellite.id)}
+                      >
+                        {satellite.path ? "Hide" : "Show"} satellite path
+                      </MenuItem>
+                      <MenuItem
+                        icon={MdEdit}
+                        onClick={() => {
+                          setSatelliteId(satellite.id);
+                          setView("form-custom");
+                        }}
+                      >
+                        Edit
+                      </MenuItem>
+                      <MenuItem
+                        icon={MdDeleteForever}
+                        onClick={() => removeSatellite(satellite.id)}
+                      >
+                        Remove
+                      </MenuItem>
+                    </Menu>
+                  </li>
+                );
+              })}
             </ul>
             <AddSatelliteMenu
               onCustomClick={() => {
