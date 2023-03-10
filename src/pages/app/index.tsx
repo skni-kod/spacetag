@@ -73,7 +73,7 @@ const Home = () => {
         <h1 className="flex select-none items-center text-2xl font-semibold">
           <Link href="/">
             <svg
-              className="h-6 fill-current duration-300 hover:scale-105 hover:text-sky-400 hover:transition"
+              className="h-6 fill-current transition hover:text-sky-400"
               viewBox="0 0 138.94 26.458"
               xmlns="http://www.w3.org/2000/svg"
             >

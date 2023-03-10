@@ -88,7 +88,7 @@ export const Combobox = <
         leaveFrom="scale-100 opacity-100"
         leaveTo="scale-95 opacity-0"
       >
-        <HeadlessUiCombobox.Options className="absolute top-full z-1 mt-2 max-h-64 w-full select-none overflow-auto rounded-md bg-neutral-800 py-1 text-white">
+        <HeadlessUiCombobox.Options className="absolute top-full z-1 mt-2 max-h-64 w-full select-none overflow-y-auto overflow-x-hidden rounded-md bg-neutral-800 py-1 text-white">
           {filtered.length === 0 && query !== "" ? (
             <div className="cursor-default px-4 py-2">Nothing found.</div>
           ) : (
@@ -96,7 +96,7 @@ export const Combobox = <
               <HeadlessUiCombobox.Option
                 className={({ active }) =>
                   clsx(
-                    "relative cursor-pointer px-4 py-2",
+                    "relative cursor-pointer px-4 py-2 transition",
                     active && "bg-sky-600"
                   )
                 }
