@@ -16,7 +16,7 @@ export type LinkProps = Merge<
 };
 
 export const ButtonLink = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, className, href, variant, ...props }, ref) => (
+  ({ children, className, href, variant = "primary", ...props }, ref) => (
     <Link
       className={buttonStyles({ className, variant })}
       href={href}
