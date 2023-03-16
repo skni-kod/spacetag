@@ -115,7 +115,7 @@ const Homepage = () => (
               </div>
               <div className="hidden h-full flex-col items-center lg:flex">
                 <div className="w-px flex-grow bg-gradient-to-b from-transparent to-neutral-700" />
-                <div className="my-1 h-3 w-3 rounded-full border-2 border-neutral-700" />
+                <div className="my-1 h-[11px] w-[11px] rounded-full border-2 border-neutral-700" />
                 <div className="w-px flex-grow bg-neutral-700" />
               </div>
               <div className="flex flex-col items-center gap-4 lg:items-start">
@@ -209,7 +209,7 @@ const Homepage = () => (
               </div>
               <div className="hidden h-full flex-col items-center lg:flex">
                 <div className="w-px flex-grow bg-neutral-700" />
-                <div className="my-1 h-3 w-3 rounded-full border-2 border-neutral-700" />
+                <div className="my-1 h-[11px] w-[11px] rounded-full border-2 border-neutral-700" />
                 <div className="w-px flex-grow bg-gradient-to-b from-neutral-700 to-transparent" />
               </div>
               <div className="flex flex-col items-center gap-4 lg:items-start">
